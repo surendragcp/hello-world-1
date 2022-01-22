@@ -1,0 +1,14 @@
+---
+- hosts: ansible
+
+  tasks:
+  - name: create docker image
+    command: docker build -t dead:latest .
+    args:
+     chdir: /opt/docker
+
+  - name: create tag to push image onto dockerhub
+    command: docker tag dead:latest habeeba001/dead:latest
+
+  - name: push docker image
+    command: docker push habeeba001/dead:latest
